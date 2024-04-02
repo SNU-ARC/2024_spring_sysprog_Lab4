@@ -1,0 +1,44 @@
+#
+# trace24.txt - slow pipe & signals
+#
+
+/bin/echo "csapsh> ./myprod 9 | sort -rn"
+./myprod 9 | sort -rn
+
+SLEEP 2
+TSTP
+SLEEP 1
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> fg %1"
+fg %1
+
+SLEEP 2
+TSTP
+SLEEP 1
+
+/bin/echo "csapsh> bg %1"
+bg %1
+
+SLEEP 3
+
+/bin/echo "csapsh> jobs"
+jobs
+
+SLEEP 3
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> quit"
+quit
+
+SLEEP 1
+QUIT
+
+
+
+
+

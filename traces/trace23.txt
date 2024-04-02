@@ -1,0 +1,21 @@
+#
+# trace23.txt - pipes and output redirection
+#
+
+/bin/echo "csapsh> ls | grep my | sort -r > test21a.txt"
+ls | grep my | sort -r > test21a.txt
+
+/bin/echo "csapsh> ls | grep my | sort -r > test21b.txt &"
+ls | grep my | sort -r > test21b.txt &
+
+/bin/echo "csapsh> cat test21a.txt"
+cat test21a.txt
+
+/bin/echo "csapsh> cat test21b.txt"
+cat test21b.txt
+
+/bin/echo "csapsh> rm test21a.txt"
+rm test21a.txt
+
+/bin/echo "csapsh> rm test21b.txt"
+rm test21b.txt

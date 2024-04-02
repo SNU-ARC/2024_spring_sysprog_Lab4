@@ -1,0 +1,9 @@
+#
+# trace22.txt - multiple chained pipes
+#
+
+/bin/echo "csapsh> ls | grep my | grep spin"
+ls | grep my | grep spin
+
+/bin/echo "csapsh> ls | grep my | grep spin &"
+ls | grep my | grep spin &

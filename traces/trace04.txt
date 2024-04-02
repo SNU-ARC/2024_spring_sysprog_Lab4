@@ -1,0 +1,11 @@
+#
+# trace04.txt - Process jobs builtin command.
+#
+/bin/echo -e "csapsh> ./myspin 2 \046"
+./myspin 2 &
+
+/bin/echo -e "csapsh> ./myspin 3 \046"
+./myspin 3 &
+
+/bin/echo "csapsh> jobs"
+jobs

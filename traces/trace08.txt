@@ -1,0 +1,14 @@
+#
+# trace08.txt - Forward SIGINT only to foreground job.
+#
+/bin/echo -e "csapsh> ./myspin 5 \046"
+./myspin 5 &
+
+/bin/echo -e "csapsh> ./myspin 10"
+./myspin 10
+
+SLEEP 2.5
+INT
+
+/bin/echo "csapsh> jobs"
+jobs

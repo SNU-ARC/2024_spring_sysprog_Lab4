@@ -1,0 +1,15 @@
+#
+# trace19.txt - Input redirection
+#
+
+/bin/echo "csapsh> /bin/echo Hello Tiny Shell! > file"
+/bin/echo Hello Tiny Shell! > file
+
+/bin/echo "csapsh> /bin/wc -l file"
+/bin/wc -l file
+
+/bin/echo "csapsh> /bin/wc -l < file"
+/bin/wc -l < file
+
+/bin/echo "csapsh> /bin/rm file"
+/bin/rm file

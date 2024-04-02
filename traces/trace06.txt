@@ -1,0 +1,8 @@
+#
+# trace06.txt - Run multiple background jobs. (ends with background job)
+#
+/bin/echo -e "csapsh> ./myspin 3 \046 ./myspin 2 \046 ./myspin 1 \046"
+./myspin 3 & ./myspin 2 & ./myspin 1 &
+
+/bin/echo "csapsh> jobs"
+jobs

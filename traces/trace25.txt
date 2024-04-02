@@ -1,0 +1,55 @@
+#
+# trace25.txt - putting it all together II
+#
+
+/bin/echo "csapsh> ls > file \046 ./myspin 3"
+ls > file & ./myspin 3
+
+SLEEP 1.5
+TSTP
+SLEEP 1
+
+/bin/echo "csapsh> jobs"
+jobs
+
+sleep 0.5
+
+/bin/echo "csapsh> ps -eo stat,command | grep ./mysplit > file2 \046 head -n 6 < file > file3"
+ps -eo stat,command | grep ./mysplit > file2 & head -n 6 < file > file3 &
+
+SLEEP 1
+
+/bin/echo "csapsh> cat file2"
+cat file2
+
+/bin/echo "csapsh> cat file3"
+cat file3
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> bg %1"
+bg %1
+
+/bin/echo "csapsh> bg %2"
+bg %2
+
+SLEEP 3
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> rm -rf file file2 file3"
+rm -rf file file2 file3
+
+/bin/echo "csapsh> quit"
+quit
+
+SLEEP 1
+
+QUIT
+
+
+
+
+

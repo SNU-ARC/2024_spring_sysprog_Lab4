@@ -1,0 +1,50 @@
+#
+# trace15.txt - Simple error handling
+#
+/bin/echo "csapsh> ./bogus"
+./bogus
+
+/bin/echo -e "csapsh> ./myspin 4 \046"
+./myspin 4 &
+
+/bin/echo "csapsh> fg"
+fg
+
+/bin/echo "csapsh> bg"
+bg
+
+/bin/echo "csapsh> fg a"
+fg a
+
+/bin/echo "csapsh> bg a"
+bg a
+
+/bin/echo "csapsh> fg 9999999"
+fg 9999999
+
+/bin/echo "csapsh> bg 9999999"
+bg 9999999
+
+/bin/echo "csapsh> fg %2"
+fg %2
+
+/bin/echo "csapsh> fg %1"
+fg %1
+
+SLEEP 2.5
+TSTP
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> bg %3"
+bg %3
+
+/bin/echo "csapsh> bg %1"
+bg %1
+
+/bin/echo "csapsh> jobs"
+jobs
+
+
+

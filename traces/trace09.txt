@@ -1,0 +1,14 @@
+#
+# trace09.txt - Forward SIGTSTP only to foreground job.
+#
+/bin/echo -e "csapsh> ./myspin 4 \046"
+./myspin 4 &
+
+/bin/echo -e "csapsh> ./myspin 5"
+./myspin 5 
+
+SLEEP 2.5
+TSTP
+
+/bin/echo "csapsh> jobs"
+jobs

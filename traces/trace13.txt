@@ -1,0 +1,17 @@
+#
+# trace13.txt - Forward SIGTSTP to every process in foreground process group
+#
+/bin/echo -e "csapsh> ./mysplit 4"
+./mysplit 4 
+
+SLEEP 2.5
+TSTP
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> ps a"
+ps a
+
+
+

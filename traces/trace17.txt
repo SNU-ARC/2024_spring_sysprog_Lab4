@@ -1,0 +1,16 @@
+#
+# trace17.txt - Tests whether the shell can handle SIGTSTP and SIGINT
+#     signals that come from other processes instead of the terminal.
+#
+
+/bin/echo "csapsh> ./mystop 2 "
+./mystop 2
+
+SLEEP 3
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> ./myint 2 "
+./myint 2
+

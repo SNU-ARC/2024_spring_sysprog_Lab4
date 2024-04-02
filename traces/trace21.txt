@@ -1,0 +1,7 @@
+#
+# trace21.txt - pipe test
+#
+
+/bin/echo "csapsh> /bin/ls | /usr/bin/sort -r"
+/bin/ls | /usr/bin/sort -r
+

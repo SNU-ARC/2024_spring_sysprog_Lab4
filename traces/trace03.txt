@@ -1,0 +1,5 @@
+#
+# trace03.txt - Run a background job.
+#
+/bin/echo -e "csapsh> ./myspin 1 \046"
+./myspin 1 &

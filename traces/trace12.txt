@@ -1,0 +1,12 @@
+#
+# trace12.txt - Forward SIGINT to every process in foreground process group
+#
+/bin/echo -e "csapsh> ./mysplit 4"
+./mysplit 4 
+
+SLEEP 2.5
+INT
+
+/bin/echo "csapsh> /bin/ps a"
+/bin/ps a
+

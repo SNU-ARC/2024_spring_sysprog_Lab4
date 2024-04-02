@@ -1,0 +1,5 @@
+#
+# trace02.txt - Run a foreground job.
+#
+/bin/echo "csapsh> quit"
+quit

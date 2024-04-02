@@ -1,0 +1,22 @@
+#
+# trace11.txt - Process fg builtin command.
+#
+/bin/echo -e "csapsh> ./myspin 4 \046"
+./myspin 4 &
+
+SLEEP 1.3
+/bin/echo "csapsh> fg %1"
+fg %1
+
+SLEEP 1.3
+TSTP
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> fg %1"
+fg %1
+
+/bin/echo "csapsh> jobs"
+jobs
+

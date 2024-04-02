@@ -1,0 +1,13 @@
+#
+# trace18.txt - Output redirection
+#
+
+/bin/echo "csapsh> /bin/echo Hello Tiny Shell! > file"
+/bin/echo Hello Tiny Shell! > file
+
+/bin/echo "csapsh> /bin/cat file"
+/bin/cat file
+
+/bin/echo "csapsh> /bin/rm file"
+/bin/rm file
+

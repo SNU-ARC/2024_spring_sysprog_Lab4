@@ -1,0 +1,23 @@
+#
+# trace14.txt - Restart every stopped process in process group
+#
+/bin/echo -e "csapsh> ./mysplit 4"
+./mysplit 4
+
+SLEEP 2.5
+TSTP
+
+/bin/echo "csapsh> jobs"
+jobs
+
+/bin/echo "csapsh> /bin/ps a"
+/bin/ps a
+
+/bin/echo "csapsh> fg %1"
+fg %1
+
+/bin/echo "csapsh> /bin/ps a"
+/bin/ps a
+
+
+
