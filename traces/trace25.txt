@@ -5,14 +5,14 @@
 /bin/echo "csapsh> ls > file \046 ./myspin 3"
 ls > file & ./myspin 3
 
-SLEEP 1.5
+SLEEP 1.3
 TSTP
 SLEEP 1
 
 /bin/echo "csapsh> jobs"
 jobs
 
-sleep 0.5
+SLEEP 0.3
 
 /bin/echo "csapsh> ps -eo stat,command | grep ./mysplit > file2 \046 head -n 6 < file > file3"
 ps -eo stat,command | grep ./mysplit > file2 & head -n 6 < file > file3 &

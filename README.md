@@ -1,3 +1,8 @@
+# What's New?
+
+#### Improved Timing Reliability
+* Modified `trace16` and `trace25` to avoid timing issues. ([reference](https://github.com/SNU-ARC/2024_spring_sysprog_Lab4/issues/7#issuecomment-2126983164))
+
 # Lab 4: Shell Lab
 
 The purpose of this lab is to become more familiar with the concepts of process control, signaling, pipes, and redirection. 
