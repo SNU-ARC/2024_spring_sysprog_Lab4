@@ -2,6 +2,8 @@
 
 #### Improved Timing Reliability
 * Modified `trace16` and `trace25` to avoid timing issues. ([reference](https://github.com/SNU-ARC/2024_spring_sysprog_Lab4/issues/7#issuecomment-2126983164))
+#### Additional Specification on Error Handling
+* Added specification on handling invalid ID in fg & bg ([reference](https://github.com/SNU-ARC/2024_spring_sysprog_Lab4/issues/5#issuecomment-2123883802))
 
 # Lab 4: Shell Lab
 
@@ -160,6 +162,10 @@ csapsh should assume that name is the path of an executable file, which it loads
 * If the command line ends with an ampersand `&`, then csapsh should run the job in the background. Otherwise, it should run the job in the foreground.
 * If the command line contains multiple `&` characters between commands, then csapsh should add and run multiple jobs separated by `&`s. Note that at most one job (at the end of command line) can be run in the foreground and the others should run in the background.
 * Each job can be identified by either its job ID (JID), a positive integer assigned by csapsh, its process group ID, or one of its process IDs (one for simple commands, several for piped command sequences). JIDs should be denoted on the command line by the prefix `%`. Process group IDs use the prefix `@`. For example, "%5" denotes JID 5, "@5" denotes process group 5, and "5" denotes the process with PID 5. We have provided you with all of the routines you need for manipulating the job list.
+  * For other invalid IDs (including string inputs like 'a'), print one of the following error messages with ID translated by `atoi`. (We have different type of braces for each case)
+    * invalid pid: `{PID}: No such process`
+    * invalid pgid: `(@PGID): No such process group`
+    * invalid jid: `[%JID]: No such job`
 * csapsh should reap all of its zombie children. If any job terminates because it receives a signal that it didn't catch, then csapsh should recognize this event and print a message with the job's PID and a description of the offending signal.
 * csapsh should support the following built-in commands:
   * The `quit` command terminates the shell.
