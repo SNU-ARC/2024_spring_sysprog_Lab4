@@ -1,0 +1,36 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace16.txt
+#
+# trace16.txt - Putting it all together
+#
+csapsh> ./bogus
+No such file or directory
+csapsh> ./myspin 10
+spinning
+spinning
+csapsh> ./myspin 3 &
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> ./myspin 4 &
+[2] (-1) { -1 } Running ./myspin 4 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Stopped ./myspin 3 
+csapsh> bg %77
+[%77]: No such job
+csapsh> bg %1
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> fg %1
+spinning
+spinning
+spinning
+spinning
+spinning
+csapsh> quit

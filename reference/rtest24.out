@@ -1,0 +1,24 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace24.txt
+#
+# trace24.txt - slow pipe & signals
+#
+csapsh> ./myprod 9 | sort -rn
+csapsh> jobs
+[1] (-1) { -1 -1 } Stopped ./myprod 9 | sort -rn
+csapsh> fg %1
+csapsh> bg %1
+[1] (-1) { -1 -1 } Running ./myprod 9 | sort -rn
+csapsh> jobs
+[1] (-1) { -1 -1 } Running ./myprod 9 | sort -rn
+9
+8
+7
+6
+5
+4
+3
+2
+1
+csapsh> jobs
+No jobs.
+csapsh> quit

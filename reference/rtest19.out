@@ -1,0 +1,10 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace19.txt
+#
+# trace19.txt - Input redirection
+#
+csapsh> /bin/echo Hello Tiny Shell! > file
+csapsh> /bin/wc -l file
+1 file
+csapsh> /bin/wc -l < file
+1
+csapsh> /bin/rm file

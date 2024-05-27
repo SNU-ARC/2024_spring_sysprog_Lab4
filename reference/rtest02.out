@@ -1,0 +1,5 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace02.txt
+#
+# trace02.txt - Run a foreground job.
+#
+csapsh> quit

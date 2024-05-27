@@ -1,0 +1,18 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace06.txt
+#
+# trace06.txt - Run multiple background jobs. (ends with background job)
+#
+csapsh> ./myspin 3 & ./myspin 2 & ./myspin 1 &
+[1] (-1) { -1 } Running ./myspin 3 
+[2] (-1) { -1 } Running ./myspin 2 
+[3] (-1) { -1 } Running ./myspin 1 
+csapsh> jobs
+[3] (-1) { -1 } Running ./myspin 1 
+[2] (-1) { -1 } Running ./myspin 2 
+[1] (-1) { -1 } Running ./myspin 3 
+spinning
+spinning
+spinning
+spinning
+spinning
+spinning

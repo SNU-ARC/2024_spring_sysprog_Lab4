@@ -1,5 +1,20 @@
 # What's New?
 
+### Announcement for evaluation
+
+Due to the limits of VM hypervisors(e.g. VirtualBox and UTM) some errors can occasionally be generated while running reference binary. TAs will evaluate your code on stable environment. 
+
+Since TAs committed reference output files in `reference/`, students can compare their output with given reference output statically.
+
+If you'd like to test with reference binary interactively, changing the number of vCPU to 1 reduce the occurrence of error. 
+
+* Known Errors
+  * `Parent(Child) cannot setpgid` ([reference](https://github.com/SNU-ARC/2024_spring_sysprog_Lab4/issues/8))
+  * `make: ***\[Makefile:58 rtestXX\] Error 141`
+
+
+#### Add grading rtest output
+* Introduce `rtests.out` and `rtestNN.out` in `reference/` which will be used to evaluate students' final binary. 
 #### Trace update for constant output
 * `trace05`, `trace16` and `trace25` are updated to generate constant output.
 #### Improved Timing Reliability

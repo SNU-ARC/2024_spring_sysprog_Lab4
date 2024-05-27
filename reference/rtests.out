@@ -1,0 +1,444 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace01.txt
+#
+# trace01.txt - Properly terminate on EOF.
+#
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace02.txt
+#
+# trace02.txt - Run a foreground job.
+#
+csapsh> quit
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace03.txt
+#
+# trace03.txt - Run a background job.
+#
+csapsh> ./myspin 1 &
+[1] (-1) { -1 } Running ./myspin 1 
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace04.txt
+#
+# trace04.txt - Process jobs builtin command.
+#
+csapsh> ./myspin 2 &
+[1] (-1) { -1 } Running ./myspin 2 
+csapsh> ./myspin 3 &
+[2] (-1) { -1 } Running ./myspin 3 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 3 
+[1] (-1) { -1 } Running ./myspin 2 
+spinning
+spinning
+spinning
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace05.txt
+#
+# trace05.txt - Run multiple background jobs. (ends with foreground job)
+#
+csapsh> ./myspin 3 & ./myspin 2 & ./myspin 1
+[1] (-1) { -1 } Running ./myspin 3 
+[2] (-1) { -1 } Running ./myspin 2 
+spinning
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 2 
+[1] (-1) { -1 } Running ./myspin 3 
+spinning
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace06.txt
+#
+# trace06.txt - Run multiple background jobs. (ends with background job)
+#
+csapsh> ./myspin 3 & ./myspin 2 & ./myspin 1 &
+[1] (-1) { -1 } Running ./myspin 3 
+[2] (-1) { -1 } Running ./myspin 2 
+[3] (-1) { -1 } Running ./myspin 1 
+csapsh> jobs
+[3] (-1) { -1 } Running ./myspin 1 
+[2] (-1) { -1 } Running ./myspin 2 
+[1] (-1) { -1 } Running ./myspin 3 
+spinning
+spinning
+spinning
+spinning
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace07.txt
+#
+# trace07.txt - Forward SIGINT to foreground job.
+#
+csapsh> ./myspin 10
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace08.txt
+#
+# trace08.txt - Forward SIGINT only to foreground job.
+#
+csapsh> ./myspin 5 &
+[1] (-1) { -1 } Running ./myspin 5 
+csapsh> ./myspin 10
+spinning
+spinning
+spinning
+spinning
+csapsh> jobs
+[1] (-1) { -1 } Running ./myspin 5 
+spinning
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace09.txt
+#
+# trace09.txt - Forward SIGTSTP only to foreground job.
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> ./myspin 5
+spinning
+spinning
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace10.txt
+#
+# trace10.txt - Process bg builtin command
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> ./myspin 5
+spinning
+spinning
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> bg %2
+[2] (-1) { -1 } Running ./myspin 5 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning
+spinning
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace11.txt
+#
+# trace11.txt - Process fg builtin command.
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+csapsh> fg %1
+spinning
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./myspin 4 
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+No jobs.
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace12.txt
+#
+# trace12.txt - Forward SIGINT to every process in foreground process group
+#
+csapsh> ./mysplit 4
+Child!
+Child!
+csapsh> /bin/ps a
+    PID TTY      STAT   TIME COMMAND
+    802 tty1     Ss     0:00 /bin/login -p --
+   1187 tty1     S+     0:00 -bash
+   1303 pts/0    Ss+    0:00 -bash
+  68396 pts/9    S+     0:00 make rtests
+  68550 pts/9    S+     0:00 /bin/sh -c ./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace12.txt
+  68551 pts/9    S+     0:00 /usr/bin/perl ./sdriver.pl -s ../reference/csapsh -a -p -t ../traces/trace12.txt
+  68552 pts/9    S+     0:00 ../reference/csapsh -p
+  68561 pts/9    R      0:00 /bin/ps a
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace13.txt
+#
+# trace13.txt - Forward SIGTSTP to every process in foreground process group
+#
+csapsh> ./mysplit 4
+Child!
+Child!
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./mysplit 4 
+csapsh> ps a
+    PID TTY      STAT   TIME COMMAND
+    802 tty1     Ss     0:00 /bin/login -p --
+   1187 tty1     S+     0:00 -bash
+   1303 pts/0    Ss+    0:00 -bash
+  68396 pts/9    S+     0:00 make rtests
+  68562 pts/9    S+     0:00 /bin/sh -c ./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace13.txt
+  68563 pts/9    S+     0:00 /usr/bin/perl ./sdriver.pl -s ../reference/csapsh -a -p -t ../traces/trace13.txt
+  68564 pts/9    S+     0:00 ../reference/csapsh -p
+  68566 pts/9    T      0:00 ./mysplit 4
+  68567 pts/9    T      0:00 ./mysplit 4
+  68570 pts/9    R      0:00 ps a
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace14.txt
+#
+# trace14.txt - Restart every stopped process in process group
+#
+csapsh> ./mysplit 4
+Child!
+Child!
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./mysplit 4
+csapsh> /bin/ps a
+    PID TTY      STAT   TIME COMMAND
+    802 tty1     Ss     0:00 /bin/login -p --
+   1187 tty1     S+     0:00 -bash
+   1303 pts/0    Ss+    0:00 -bash
+  68396 pts/9    S+     0:00 make rtests
+  68571 pts/9    S+     0:00 /bin/sh -c ./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace14.txt
+  68572 pts/9    S+     0:00 /usr/bin/perl ./sdriver.pl -s ../reference/csapsh -a -p -t ../traces/trace14.txt
+  68573 pts/9    S+     0:00 ../reference/csapsh -p
+  68575 pts/9    T      0:00 ./mysplit 4
+  68576 pts/9    T      0:00 ./mysplit 4
+  68583 pts/9    R      0:00 /bin/ps a
+csapsh> fg %1
+Child!
+Child!
+csapsh> /bin/ps a
+    PID TTY      STAT   TIME COMMAND
+    802 tty1     Ss     0:00 /bin/login -p --
+   1187 tty1     S+     0:00 -bash
+   1303 pts/0    Ss+    0:00 -bash
+  68396 pts/9    S+     0:00 make rtests
+  68571 pts/9    S+     0:00 /bin/sh -c ./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace14.txt
+  68572 pts/9    S+     0:00 /usr/bin/perl ./sdriver.pl -s ../reference/csapsh -a -p -t ../traces/trace14.txt
+  68573 pts/9    S+     0:00 ../reference/csapsh -p
+  68586 pts/9    R      0:00 /bin/ps a
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace15.txt
+#
+# trace15.txt - Simple error handling
+#
+csapsh> ./bogus
+No such file or directory
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> fg
+fg command requires PID or %jobid argument
+csapsh> bg
+bg command requires PID or %jobid argument
+csapsh> fg a
+{0}: No such process
+csapsh> bg a
+{0}: No such process
+csapsh> fg 9999999
+{9999999}: No such process
+csapsh> bg 9999999
+{9999999}: No such process
+csapsh> fg %2
+[%2]: No such job
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./myspin 4 
+csapsh> bg %3
+[%3]: No such job
+csapsh> bg %1
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> jobs
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace16.txt
+#
+# trace16.txt - Putting it all together
+#
+csapsh> ./bogus
+No such file or directory
+csapsh> ./myspin 10
+spinning
+spinning
+csapsh> ./myspin 3 &
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> ./myspin 4 &
+[2] (-1) { -1 } Running ./myspin 4 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Stopped ./myspin 3 
+csapsh> bg %77
+[%77]: No such job
+csapsh> bg %1
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 4 
+[1] (-1) { -1 } Running ./myspin 3 
+csapsh> fg %1
+spinning
+spinning
+spinning
+spinning
+spinning
+csapsh> quit
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace17.txt
+#
+# trace17.txt - Tests whether the shell can handle SIGTSTP and SIGINT
+#     signals that come from other processes instead of the terminal.
+#
+csapsh> ./mystop 2 
+1
+2
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./mystop 2
+csapsh> ./myint 2 
+1
+2
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace18.txt
+#
+# trace18.txt - Output redirection
+#
+csapsh> /bin/echo Hello Tiny Shell! > file
+csapsh> /bin/cat file
+Hello Tiny Shell!
+csapsh> /bin/rm file
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace19.txt
+#
+# trace19.txt - Input redirection
+#
+csapsh> /bin/echo Hello Tiny Shell! > file
+csapsh> /bin/wc -l file
+1 file
+csapsh> /bin/wc -l < file
+1
+csapsh> /bin/rm file
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace20.txt
+#
+# trace20.txt - Output redirection and path search
+#
+csapsh> echo Hello Tiny Shell! > file
+csapsh> cat file
+Hello Tiny Shell!
+csapsh> rm file
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace21.txt
+#
+# trace21.txt - pipe test
+#
+csapsh> /bin/ls | /usr/bin/sort -r
+sdriver.pl
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+Makefile
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace22.txt
+#
+# trace22.txt - multiple chained pipes
+#
+csapsh> ls | grep my | grep spin
+myspin
+myspin.c
+csapsh> ls | grep my | grep spin &
+[1] (-1) { -1 -1 -1 } Running ls | grep my | grep spin 
+myspin
+myspin.c
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace23.txt
+#
+# trace23.txt - pipes and output redirection
+#
+csapsh> ls | grep my | sort -r > test21a.txt
+csapsh> ls | grep my | sort -r > test21b.txt &
+[1] (-1) { -1 -1 -1 } Running ls | grep my | sort -r > test21b.txt 
+csapsh> cat test21a.txt
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+csapsh> cat test21b.txt
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+csapsh> rm test21a.txt
+csapsh> rm test21b.txt
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace24.txt
+#
+# trace24.txt - slow pipe & signals
+#
+csapsh> ./myprod 9 | sort -rn
+csapsh> jobs
+[1] (-1) { -1 -1 } Stopped ./myprod 9 | sort -rn
+csapsh> fg %1
+csapsh> bg %1
+[1] (-1) { -1 -1 } Running ./myprod 9 | sort -rn
+csapsh> jobs
+[1] (-1) { -1 -1 } Running ./myprod 9 | sort -rn
+9
+8
+7
+6
+5
+4
+3
+2
+1
+csapsh> jobs
+No jobs.
+csapsh> quit
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace25.txt
+#
+# trace25.txt - putting it all together II
+#
+csapsh> ls | sort -f > file \046 ./myspin 3
+[1] (-1) { -1 -1 } Running ls | sort -f > file 
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 3
+csapsh> ps -eo stat,command | grep ./mysplit > file2 \046 head -n 6 < file > file3
+[3] (-1) { -1 -1 } Running ps -eo stat,command | grep ./mysplit > file2 
+[4] (-1) { -1 } Running head -n 6 < file > file3 
+csapsh> cat file2
+S    grep ./mysplit
+csapsh> cat file3
+file
+Makefile
+myint
+myint.c
+myprod
+myprod.c
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 3
+csapsh> bg %1
+[%1]: No such job
+csapsh> bg %2
+[2] (-1) { -1 } Running ./myspin 3
+spinning
+spinning
+csapsh> jobs
+No jobs.
+csapsh> rm -rf file file2 file3
+csapsh> quit
+Regression tests completed.

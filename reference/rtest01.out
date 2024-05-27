@@ -1,0 +1,4 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace01.txt
+#
+# trace01.txt - Properly terminate on EOF.
+#

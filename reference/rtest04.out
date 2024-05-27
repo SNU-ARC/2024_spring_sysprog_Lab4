@@ -1,0 +1,16 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace04.txt
+#
+# trace04.txt - Process jobs builtin command.
+#
+csapsh> ./myspin 2 &
+[1] (-1) { -1 } Running ./myspin 2 
+csapsh> ./myspin 3 &
+[2] (-1) { -1 } Running ./myspin 3 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 3 
+[1] (-1) { -1 } Running ./myspin 2 
+spinning
+spinning
+spinning
+spinning
+spinning

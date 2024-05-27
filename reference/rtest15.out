@@ -1,0 +1,35 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace15.txt
+#
+# trace15.txt - Simple error handling
+#
+csapsh> ./bogus
+No such file or directory
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> fg
+fg command requires PID or %jobid argument
+csapsh> bg
+bg command requires PID or %jobid argument
+csapsh> fg a
+{0}: No such process
+csapsh> bg a
+{0}: No such process
+csapsh> fg 9999999
+{9999999}: No such process
+csapsh> bg 9999999
+{9999999}: No such process
+csapsh> fg %2
+[%2]: No such job
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./myspin 4 
+csapsh> bg %3
+[%3]: No such job
+csapsh> bg %1
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> jobs
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning

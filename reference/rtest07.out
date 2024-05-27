@@ -1,0 +1,7 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace07.txt
+#
+# trace07.txt - Forward SIGINT to foreground job.
+#
+csapsh> ./myspin 10
+spinning
+spinning

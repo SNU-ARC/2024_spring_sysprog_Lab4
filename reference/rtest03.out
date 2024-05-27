@@ -1,0 +1,7 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace03.txt
+#
+# trace03.txt - Run a background job.
+#
+csapsh> ./myspin 1 &
+[1] (-1) { -1 } Running ./myspin 1 
+spinning

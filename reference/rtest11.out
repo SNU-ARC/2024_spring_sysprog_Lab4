@@ -1,0 +1,16 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace11.txt
+#
+# trace11.txt - Process fg builtin command.
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+csapsh> fg %1
+spinning
+csapsh> jobs
+[1] (-1) { -1 } Stopped ./myspin 4 
+csapsh> fg %1
+spinning
+spinning
+csapsh> jobs
+No jobs.

@@ -1,0 +1,17 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace21.txt
+#
+# trace21.txt - pipe test
+#
+csapsh> /bin/ls | /usr/bin/sort -r
+sdriver.pl
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+Makefile

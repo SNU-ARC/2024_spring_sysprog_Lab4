@@ -1,0 +1,31 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace23.txt
+#
+# trace23.txt - pipes and output redirection
+#
+csapsh> ls | grep my | sort -r > test21a.txt
+csapsh> ls | grep my | sort -r > test21b.txt &
+[1] (-1) { -1 -1 -1 } Running ls | grep my | sort -r > test21b.txt 
+csapsh> cat test21a.txt
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+csapsh> cat test21b.txt
+mystop.c
+mystop
+mysplit.c
+mysplit
+myspin.c
+myspin
+myprod.c
+myprod
+myint.c
+myint
+csapsh> rm test21a.txt
+csapsh> rm test21b.txt

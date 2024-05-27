@@ -1,0 +1,24 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace10.txt
+#
+# trace10.txt - Process bg builtin command
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> ./myspin 5
+spinning
+spinning
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> bg %2
+[2] (-1) { -1 } Running ./myspin 5 
+csapsh> jobs
+[2] (-1) { -1 } Running ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning
+spinning
+spinning
+spinning

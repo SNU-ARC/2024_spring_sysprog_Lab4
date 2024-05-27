@@ -1,0 +1,16 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace09.txt
+#
+# trace09.txt - Forward SIGTSTP only to foreground job.
+#
+csapsh> ./myspin 4 &
+[1] (-1) { -1 } Running ./myspin 4 
+csapsh> ./myspin 5
+spinning
+spinning
+spinning
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 5 
+[1] (-1) { -1 } Running ./myspin 4 
+spinning
+spinning

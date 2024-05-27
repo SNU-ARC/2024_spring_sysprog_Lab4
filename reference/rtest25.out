@@ -1,0 +1,33 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace25.txt
+#
+# trace25.txt - putting it all together II
+#
+csapsh> ls | sort -f > file \046 ./myspin 3
+[1] (-1) { -1 -1 } Running ls | sort -f > file 
+spinning
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 3
+csapsh> ps -eo stat,command | grep ./mysplit > file2 \046 head -n 6 < file > file3
+[3] (-1) { -1 -1 } Running ps -eo stat,command | grep ./mysplit > file2 
+[4] (-1) { -1 } Running head -n 6 < file > file3 
+csapsh> cat file2
+S    grep ./mysplit
+csapsh> cat file3
+file
+Makefile
+myint
+myint.c
+myprod
+myprod.c
+csapsh> jobs
+[2] (-1) { -1 } Stopped ./myspin 3
+csapsh> bg %1
+[%1]: No such job
+csapsh> bg %2
+[2] (-1) { -1 } Running ./myspin 3
+spinning
+spinning
+csapsh> jobs
+No jobs.
+csapsh> rm -rf file file2 file3
+csapsh> quit

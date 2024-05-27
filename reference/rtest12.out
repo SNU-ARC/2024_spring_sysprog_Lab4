@@ -1,0 +1,17 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace12.txt
+#
+# trace12.txt - Forward SIGINT to every process in foreground process group
+#
+csapsh> ./mysplit 4
+Child!
+Child!
+csapsh> /bin/ps a
+    PID TTY      STAT   TIME COMMAND
+    802 tty1     Ss     0:00 /bin/login -p --
+   1187 tty1     S+     0:00 -bash
+   1303 pts/0    Ss+    0:00 -bash
+  81118 pts/9    S+     0:00 make rtest12
+  81119 pts/9    S+     0:00 /bin/sh -c ./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace12.txt
+  81120 pts/9    S+     0:00 /usr/bin/perl ./sdriver.pl -s ../reference/csapsh -a -p -t ../traces/trace12.txt
+  81121 pts/9    S+     0:00 ../reference/csapsh -p
+  81130 pts/9    R      0:00 /bin/ps a

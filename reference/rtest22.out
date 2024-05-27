@@ -1,0 +1,11 @@
+./sdriver.pl -s ../reference/csapsh -a "-p" -t ../traces/trace22.txt
+#
+# trace22.txt - multiple chained pipes
+#
+csapsh> ls | grep my | grep spin
+myspin
+myspin.c
+csapsh> ls | grep my | grep spin &
+[1] (-1) { -1 -1 -1 } Running ls | grep my | grep spin 
+myspin
+myspin.c
