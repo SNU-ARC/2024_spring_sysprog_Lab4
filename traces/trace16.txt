@@ -41,6 +41,8 @@ jobs
 /bin/echo "csapsh> fg %1"
 fg %1
 
+SLEEP 3.2
+
 /bin/echo "csapsh> quit"
 quit
 

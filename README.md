@@ -1,5 +1,7 @@
 # What's New?
 
+#### Trace update for constant output
+* `trace05`, `trace16` and `trace25` are updated to generate constant output.
 #### Improved Timing Reliability
 * Modified `trace16` and `trace25` to avoid timing issues. ([reference](https://github.com/SNU-ARC/2024_spring_sysprog_Lab4/issues/7#issuecomment-2126983164))
 #### Additional Specification on Error Handling

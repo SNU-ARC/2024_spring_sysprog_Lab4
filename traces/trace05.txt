@@ -4,5 +4,7 @@
 /bin/echo -e "csapsh> ./myspin 3 \046 ./myspin 2 \046 ./myspin 1"
 ./myspin 3 & ./myspin 2 & ./myspin 1
 
+SLEEP 1.3
+
 /bin/echo "csapsh> jobs"
 jobs

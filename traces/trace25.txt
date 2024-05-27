@@ -2,8 +2,8 @@
 # trace25.txt - putting it all together II
 #
 
-/bin/echo "csapsh> ls > file \046 ./myspin 3"
-ls > file & ./myspin 3
+/bin/echo "csapsh> ls | sort -f > file \046 ./myspin 3"
+ls | sort -f > file & ./myspin 3
 
 SLEEP 1.3
 TSTP
